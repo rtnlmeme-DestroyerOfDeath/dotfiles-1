@@ -104,11 +104,11 @@
                        (auto-login? #f)
                        (startx (xorg-start-command #:modules my-xorg-modules))
                        ;; TODO: Can't slim pre-fill the username?
-                       (default-user "ambrevar")))))
+                       (default-user "benj")))))
 
 (operating-system
- (host-name "mimimi")
- (timezone "Europe/Paris")
+ (host-name "farstar")
+ (timezone "Europe/Berlin")
  (locale "en_US.utf8")
 
  ;; Use the UEFI variant of GRUB with the EFI System
@@ -154,13 +154,14 @@
                       %base-file-systems))
 
  (users (cons* (user-account
-                (name "ambrevar")
+                (name "benj")
                 (group "users")
                 (supplementary-groups '("wheel" "netdev" ; netdev is needed for networking.
                                         ;; "audio"
-                                        "lp" ; for bluetooth
-                                        "video"))
-                (home-directory "/home/ambrevar"))
+                                        ;; "lp" ; for bluetooth
+                                        ;; "video"
+                                        ))
+                (home-directory "/home/benj"))
                %base-user-accounts))
 
  (packages (cons* nss-certs             ;for HTTPS access
@@ -180,7 +181,7 @@
             ;;                 ;; >> echo 'auto' > '/sys/bus/i2c/devices/i2c-2/device/power/control';
             ;;                 ;; >> echo 'auto' > '/sys/bus/pci/devices/0000:02:00.0/power/control';
             ;;                 )
-            (bluetooth-service)
+            ;; (bluetooth-service)
             %my-services))
 
  ;; Allow resolution of '.local' host names with mDNS.
